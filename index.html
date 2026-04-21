@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
 <link rel="icon" type="image/png" href="themes/favicon.png">
-<title>Index page</title>
+<title>Fahrtentracker</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -435,16 +435,148 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body class="article">
+<body class="article toc2 toc-left">
 <div id="header">
-<h1>Index page</h1>
+<h1>Fahrtentracker</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_ausgangssituation">1. Ausgangssituation</a></li>
+<li><a href="#_istzustand">2. Istzustand</a></li>
+<li><a href="#_problemstellung">3. Problemstellung</a></li>
+<li><a href="#_aufgabenstellung">4. Aufgabenstellung</a>
+<ul class="sectlevel2">
+<li><a href="#_funktionelle_anforderungen">4.1. Funktionelle Anforderungen</a></li>
+<li><a href="#_nicht_funktionale_anforderungen">4.2. Nicht funktionale Anforderungen</a></li>
+</ul>
+</li>
+<li><a href="#_ziele">5. Ziele</a></li>
+<li><a href="#_mengengerüst">6. Mengengerüst</a></li>
+<li><a href="#_rahmenbedingungen">7. Rahmenbedingungen</a></li>
+</ul>
+</div>
 </div>
 <div id="content">
-
+<div class="sect1">
+<h2 id="_ausgangssituation"><a class="anchor" href="#_ausgangssituation"></a>1. Ausgangssituation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In Österreich gibt es jährlich sehr viele Fahrschüler, die sich für einen Führerschein anmelden. In Folge möchten sie diesen dann auch abschließen.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_istzustand"><a class="anchor" href="#_istzustand"></a>2. Istzustand</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Die meisten Fahrschüler schreiben ihre Kilometer, die sie fahren müssen, Analog auf oder in Excel nieder. Dies ist zum Beispiel beim Autoführerschein nötig.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_problemstellung"><a class="anchor" href="#_problemstellung"></a>3. Problemstellung</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Viele Fahrschüler verlieren schnell den Überblick, oder vergessen gefahrene Kilometer einzutragen. Zudem ist die Verwaltung von vielen Zetteln sehr unübersichtlich.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_aufgabenstellung"><a class="anchor" href="#_aufgabenstellung"></a>4. Aufgabenstellung</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Es soll eine JavaFX-App entwickelt werden, die dieses Problem löst.</p>
+</div>
+<div class="sect2">
+<h3 id="_funktionelle_anforderungen"><a class="anchor" href="#_funktionelle_anforderungen"></a>4.1. Funktionelle Anforderungen</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Der Benutzer soll eine neue Fahrt hinzufügen können.</p>
+</li>
+<li>
+<p>Der Benutzer soll eine Fahrt, die falsche Daten beinhaltet, entweder löschen oder ändern können.</p>
+</li>
+<li>
+<p>Der Benutzer soll eine Übersicht haben, wo er wie viele Kilometer gefahren ist.</p>
+</li>
+<li>
+<p>Der Benutzer soll eine Aufsummierung der Kilometer haben.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nicht_funktionale_anforderungen"><a class="anchor" href="#_nicht_funktionale_anforderungen"></a>4.2. Nicht funktionale Anforderungen</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Die Daten sollen sicher und persistent verwaltet werden</p>
+</li>
+<li>
+<p>Eine minimale UI mit zwei Tabs(Eintragung und Statistik) soll zur Verfügung stehen.
+-</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ziele"><a class="anchor" href="#_ziele"></a>5. Ziele</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Verwaltung von gefahrenen Kilometern vereinfachen</p>
+</li>
+<li>
+<p>Fahrschüler anregen den Führerschein zu machen</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_mengengerüst"><a class="anchor" href="#_mengengerüst"></a>6. Mengengerüst</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Benutzer: 1</p>
+</li>
+<li>
+<p>In der Woche fährt man durchschnittlich 2-3 Mal, wenn man den L17 macht (das sind ca. 120 einträge im Jahr). Beim normalen Führerschein auch das Gleiche.</p>
+</li>
+<li>
+<p>Eintragungszahl kann variieren, manchmal mehr manchmal weniger.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_rahmenbedingungen"><a class="anchor" href="#_rahmenbedingungen"></a>7. Rahmenbedingungen</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>JavaFX</p>
+</li>
+<li>
+<p>Datenbank: H2</p>
+</li>
+<li>
+<p>Pattern: MVC</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-04-20 06:52:48 UTC
+Last updated 2026-04-21 16:11:26 UTC
 </div>
 </div>
 </body>
