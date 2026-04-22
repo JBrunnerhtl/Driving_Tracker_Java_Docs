@@ -1,0 +1,46 @@
+@startuml
+left to right direction
+class Trip {
+    {static}-int lastId
+    -int id
+    +LocalDateTime date
+    +Hashset<Condition> conditions
+    +double startKm
+    +double endKm
+    +string startCity
+    +string endCity
+    +string extraInfo
+
+    +Trip()
+    +Trip()
+}
+
+class TripManager {
+    +ObservableList<Trip> trips
+
+    +TripManager()
+    +getSumOfKilometers()
+    +addTrip()
+    +updateTrip()
+    +deleteTrip()
+    +saveToDatabase()
+    -loadDatabase()
+}
+
+class Database {
+}
+
+enum Condition {
+    Tag
+    Nacht
+    Regen
+    Trocken
+    Nass
+    Nebel
+    Schnee
+}
+
+Trip "1" --- "*" Condition :hat
+TripManager "1" --- "*" Trip : verwaltet
+TripManager "1" --- "1" Database : schreibt in
+@enduml
