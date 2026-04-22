@@ -10,7 +10,7 @@ ifndef::imagesdir[:imagesdir: images]
 :toc:
 ifdef::backend-html5[]
 // https://fontawesome.com/v4.7.0/icons/
-icon:file-text-o[link=https://github.com/JBrunnerhtl/Driving_Tracker_Java_Docs/blob/main/asciidocs/{docname}.adoc] ‏ ‏ ‎
+icon:file-text-o[link=https://github.com/JBrunnerhtl/Driving_Tracker_Java_Docs/blob/main/asciidocs/docs/{docname}.adoc] ‏ ‏ ‎
 icon:github-square[link=https://github.com/JBrunnerhtl/Driving_Tracker_Java_Docs] ‏ ‏ ‎
 endif::backend-html5[]
 
