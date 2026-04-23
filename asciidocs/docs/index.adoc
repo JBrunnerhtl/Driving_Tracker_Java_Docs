@@ -1,6 +1,6 @@
 = Übersicht
 Jan Brunner
-1.0.0, {docdate}:
+1.0.0, {docdate}
 :icons: font
 :experimental:
 :sectnums:
