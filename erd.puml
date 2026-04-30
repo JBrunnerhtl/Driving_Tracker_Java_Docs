@@ -1,0 +1,25 @@
+@startuml DrivingTracker_ERD
+!define ENTITY <b>
+!define RELATIONSHIP --
+
+entity TRIP {
+    * ID : INT <<PK>>
+    ---
+    * DATE : DATE
+    * START_KM : DOUBLE
+    * END_KM : DOUBLE
+    * START_CITY : VARCHAR(100)
+    * END_CITY : VARCHAR(100)
+    INFO : VARCHAR(1000)
+}
+
+entity TRIP_CONDITION {
+    * TRIP_ID : INT <<FK>>
+    * CONDITION : VARCHAR(50)
+    ---
+    PRIMARY KEY (TRIP_ID, CONDITION)
+}
+
+TRIP ||--o{ TRIP_CONDITION : has
+
+@enduml
