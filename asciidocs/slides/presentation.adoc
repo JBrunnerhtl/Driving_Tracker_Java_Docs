@@ -86,7 +86,7 @@ JavaFX-Anwendung für Fahrtenverwaltung
 
 == Use-Cases im Überblick
 
-[plantuml, usecase, svg, width=85%, height=480]
+[plantuml, usecase, svg]
 ----
 @startuml DrivingTracker_UseCase
 left to right direction
@@ -101,8 +101,8 @@ package "Driving Tracker" {
     usecase UC5 as "Filtern"
     usecase UC6 as "Sortieren"
     usecase UC7 as "Statistiken"
-    usecase UC8 as "Fahrten importieren"
-    usecase UC9 as "Fahrten exportieren"
+    usecase UC8 as "Importieren"
+    usecase UC9 as "Exportieren"
 }
 
 Driver --> UC1
@@ -125,7 +125,7 @@ UC3 .> UC4 : <<include>>
 
 == Systemarchitektur
 
-[plantuml, classdia, svg, width=90%, height=500]
+[plantuml, classdia, svg]
 ----
 @startuml
 left to right direction
@@ -137,25 +137,25 @@ class Trip {
     -String startCity / endCity
     -HashSet<Condition> conditions
     
-    +Trip(...) +getKilometers()
+    +getKilometers()
 }
 
 class TripManager {
     -ObservableList<Trip> trips
     -DatabaseConnection connection
     
-    +loadTripsFromDB()
     +addTrip() +deleteTrip()
     +getSumKilometers()
 }
 
 class DatabaseConnection {
-    +insertIntoDB() +getAllTrips()
+    +insertIntoDB()
+    +getAllTrips()
 }
 
 enum Condition {
     Day / Night
-    Rain / Dry
+    Rain / Dry / Wet
     Fog / Snow / Ice
 }
 
@@ -170,7 +170,7 @@ TripManager "1" --- "1" DatabaseConnection
 
 == Datenbankmodell
 
-[plantuml, erd, svg, width=90%, height=400]
+[plantuml, erd, svg]
 ----
 @startuml DrivingTracker_ERD
 
@@ -178,7 +178,7 @@ entity TRIP {
     * ID : INT <<PK>>
     ---
     DATE, START_KM, END_KM
-    START_CITY, END_CITY, INFO
+    START_CITY, END_CITY
 }
 
 entity TRIP_CONDITION {
