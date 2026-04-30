@@ -1,5 +1,6 @@
 = Driving Tracker - Fahrtenverwaltung
 :author: Jan Brunner
+:email: jan.brunner@htl.at
 :revnumber: 1.0
 :revdate: {docdate}
 :revremark: JavaFX Anwendung zur Fahrtenverwaltung für Fahrschüler
@@ -8,6 +9,7 @@
 :doctype: article
 :revealjs_width: 1408
 :revealjs_height: 792
+:revealjs_theme: black
 :source-highlighter: highlightjs
 :iconfont-remote!:
 :iconfont-name: fonts/fontawesome/css/all
@@ -21,6 +23,7 @@ endif::[]
 :title-slide-transition-speed: slow
 :transition: fade
 :transition-speed: slow
+:customcss: css/presentation.css
 
 == Driving Tracker
 
@@ -29,9 +32,9 @@ Digitale Fahrtenverwaltung für Fahrschüler
 
 _Vereinfachte Verwaltung gefahrener Kilometer und Fahrtbedingungen_
 
-[transition]
+== Ausgangssituation und Problem
 
-== Ausgangssituation
+=== Ausgangssituation
 
 Fahrschüler dokumentieren Fahrten für Führerschein:
 
@@ -39,9 +42,7 @@ Fahrschüler dokumentieren Fahrten für Führerschein:
 * 2-3 Fahrten pro Woche durchschnittlich
 * Circa 120 Einträge pro Jahr
 
-[transition]
-
-== Das Problem
+=== Das Problem
 
 Analoge Verwaltung heute:
 
@@ -50,30 +51,26 @@ Analoge Verwaltung heute:
 * Überblick geht schnell verloren
 * Zeitaufwändig und fehleranfällig
 
-[transition]
+== Anforderungen
 
-== Anforderungen an die Lösung
-
-Funktional:
+=== Funktionale Anforderungen
 
 * Neue Fahrten erfassen und speichern
 * Fahrten bearbeiten oder löschen
 * Gesamtkilometer und Durchschnittswerte anzeigen
 * Daten persistent speichern
+* Fahrten importieren und exportieren
 
-[transition]
-
-== Anforderungen (Fortsetzung)
-
-Nicht-funktional:
+=== Nicht-funktionale Anforderungen
 
 * Sichere Datenspeicherung
 * Zwei-Tab Interface: Erfassung & Statistik
 * Intuitive und einfache Bedienung
+* JavaFX als GUI-Framework
 
-[transition]
+== Die Lösung
 
-== Lösungsansatz
+=== Lösungsansatz
 
 JavaFX-Anwendung für Fahrtenverwaltung
 
@@ -82,9 +79,7 @@ JavaFX-Anwendung für Fahrtenverwaltung
 * Automatische Statistikberechnung
 * Sichere Datenpersistenz
 
-[transition]
-
-== Use-Cases im Überblick
+=== Use-Cases im Überblick
 
 [plantuml, usecase, svg]
 ----
@@ -121,9 +116,9 @@ UC3 .> UC4 : <<include>>
 @enduml
 ----
 
-[transition]
+== Architektur
 
-== Systemarchitektur
+=== Systemarchitektur
 
 [plantuml, classdia, svg]
 ----
@@ -166,9 +161,9 @@ TripManager "1" --- "1" DatabaseConnection
 @enduml
 ----
 
-[transition]
+Model-View-Controller Pattern mit drei Hauptkomponenten
 
-== Datenbankmodell
+=== Datenbankmodell
 
 [plantuml, erd, svg]
 ----
@@ -193,22 +188,7 @@ TRIP ||--o{ TRIP_CONDITION
 
 Relationale Struktur für sichere Datenpersistenz
 
-[transition]
-
-== Technische Realisierung
-
-[cols="1,2"]
-|===
-| Programmiersprache | Java 21
-| GUI-Framework | JavaFX
-| Datenbanksystem | H2
-| Architektur-Pattern | Model-View-Controller (MVC)
-| Persistenz-Layer | JDBC
-|===
-
-[transition]
-
-== Benutzeroberfläche
+=== Benutzeroberfläche
 
 Zwei-Tab Interface:
 
@@ -220,41 +200,37 @@ Zwei-Tab Interface:
 
 Intuitive Navigation und klare Datenübersicht
 
+== Technische Realisierung
 
-
-[transition]
-
-== Mengengerüst und Skalierung
+=== Technologie-Stack
 
 [cols="1,2"]
 |===
-| Benutzer pro Installation | 1
-| Einträge pro Jahr | Circa 120 Fahrten
-| Fahrten pro Woche | 2-3 durchschnittlich
+| Programmiersprache | Java 21
+| GUI-Framework | JavaFX
+| Datenbanksystem | H2
+| Architektur-Pattern | Model-View-Controller (MVC)
+| Persistenz-Layer | JDBC
 |===
 
 
-[transition]
+== Zusammenfassung
 
-== Ziele der Anwendung
+=== Ziele der Anwendung
 
 * Vereinfachung der Fahrtenverwaltung
 * Motivationssteigerung für Fahrschüler
 * Digitale Alternative zu analogen Methoden
 * Transparente Verfolgung des Fortschritts
 
-[transition]
+=== Die Lösung
 
-== Zusammenfassung
-
-Die Lösung:
+Die Driving Tracker Anwendung:
 
 * Strukturierte und sichere Fahrtenverwaltung
 * Eliminiert die Zettelwirtschaft
 * Automatische Statistikberechnung
 * Wartbar und benutzerfreundlich
-
-[transition]
 
 == Vielen Dank
 
