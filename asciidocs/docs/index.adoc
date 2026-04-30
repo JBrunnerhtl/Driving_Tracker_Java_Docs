@@ -24,4 +24,5 @@ https://jbrunnerhtl.github.io/Driving_Tracker_Java_Docs/database.html[Datenbank]
 
 https://jbrunnerhtl.github.io/Driving_Tracker_Java_Docs/user.html[Use-Case]
 
+https://jbrunnerhtl.github.io/Driving_Tracker_Java_Docs/slides/presentation.html[Slides]
 
