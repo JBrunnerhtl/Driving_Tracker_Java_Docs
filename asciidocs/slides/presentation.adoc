@@ -161,7 +161,6 @@ TripManager "1" --- "1" DatabaseConnection
 @enduml
 ----
 
-Model-View-Controller Pattern mit drei Hauptkomponenten
 
 === Datenbankmodell
 
@@ -186,7 +185,6 @@ TRIP ||--o{ TRIP_CONDITION
 @enduml
 ----
 
-Relationale Struktur für sichere Datenpersistenz
 
 === Benutzeroberfläche
 
