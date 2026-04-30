@@ -1,6 +1,6 @@
 = Driving Tracker - Fahrtenverwaltung
 :author: Jan Brunner
-:email: jan.brunner@htl.at
+
 :revnumber: 1.0
 :revdate: {docdate}
 :revremark: JavaFX Anwendung zur Fahrtenverwaltung für Fahrschüler
