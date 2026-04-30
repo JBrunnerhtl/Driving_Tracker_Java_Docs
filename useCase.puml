@@ -13,6 +13,8 @@ package "Driving Tracker System" {
     usecase UC6 as "Sort Trips"
     usecase UC7 as "View Statistics"
     usecase UC8 as "View Progress"
+    usecase UC9 as "Import Trips"
+    usecase UC10 as "Export Trips"
 }
 
 Driver --> UC1 : Create new trip
@@ -23,6 +25,8 @@ Driver --> UC5 : Find trips by condition/city
 Driver --> UC6 : Sort trips (new/old)
 Driver --> UC7 : See statistics
 Driver --> UC8 : Check progress bar
+Driver --> UC9 : Import from CSV/file
+Driver --> UC10 : Export to CSV/file
 
 UC1 .> UC4 : <<include>>
 UC2 .> UC4 : <<include>>
@@ -48,6 +52,18 @@ note right of UC7
   - Trips this month
   - Progress bar (L17 or Normal)
   - Weekly activity chart
+end note
+
+note right of UC9
+  Import from:
+  - CSV files
+  - Previous backups
+end note
+
+note right of UC10
+  Export to:
+  - CSV format
+  - Data backup
 end note
 
 @enduml
