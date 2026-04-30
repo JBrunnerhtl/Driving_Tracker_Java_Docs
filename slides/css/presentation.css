@@ -1,13 +1,75 @@
 /*https://github.com/asciidoctor/asciidoctor-reveal.js/issues/199*/
+
+/* Natürliche und elegante Fonts */
+.reveal {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    text-transform: none;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+.reveal p,
+.reveal li,
+.reveal dl,
+.reveal dt,
+.reveal dd {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+}
+
+/* Schwarzer Hintergrund */
+.reveal {
+    background: #000000;
+    color: #e8e8e8;
+}
+
+.reveal section {
+    background: #000000;
+}
+
+/* Bilder und andere Elemente */
 .reveal section img {
     border: 0;
     box-shadow: none;
+    background: transparent;
 }
+
 .font-smaller {
     font-size: smaller;
 }
+
 .font-larger {
     font-size: larger;
 }
 
-.reveal .lightbg { background: #fff8f1d0; }
+.reveal .lightbg {
+    background: #fff8f1d0;
+}
+
+/* Text-Farben für bessere Lesbarkeit */
+.reveal a {
+    color: #79b8ff;
+    text-decoration: underline;
+}
+
+.reveal strong {
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.reveal em {
+    font-style: italic;
+    color: #b0b8c1;
+}
+
