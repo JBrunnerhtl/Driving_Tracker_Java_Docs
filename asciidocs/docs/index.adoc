@@ -18,4 +18,10 @@ endif::backend-html5[]
 
 https://jbrunnerhtl.github.io/Driving_Tracker_Java_Docs/specification.html[Spezifikation]
 
-https://jbrunnerhtl.github.io/Driving_Tracker_Java_Docs/structure.html[Struktur]
+https://jbrunnerhtl.github.io/Driving_Tracker_Java_Docs/structure.html[Klassendiagramm]
+
+https://jbrunnerhtl.github.io/Driving_Tracker_Java_Docs/database.html[Datenbank]
+
+https://jbrunnerhtl.github.io/Driving_Tracker_Java_Docs/user.html[Use-Case]
+
+

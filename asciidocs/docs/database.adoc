@@ -1,0 +1,46 @@
+= ERD
+Jan Brunner
+1.0.0, {docdate}
+:icons: font
+:experimental:
+:sectnums:
+:source-highlighter: rouge
+:docinfo: shared
+ifndef::imagesdir[:imagesdir: images]
+:toc:
+ifdef::backend-html5[]
+// https://fontawesome.com/v4.7.0/icons/
+icon:file-text-o[link=https://github.com/JBrunnerhtl/Driving_Tracker_Java_Docs/blob/main/asciidocs/docs/{docname}.adoc] ‏ ‏ ‎
+icon:github-square[link=https://github.com/JBrunnerhtl/Driving_Tracker_Java_Docs] ‏ ‏ ‎
+endif::backend-html5[]
+
+== Datenbank
+
+[plantuml, erd, svg]
+----
+@startuml DrivingTracker_ERD
+!define ENTITY <b>
+!define RELATIONSHIP --
+
+entity TRIP {
+    * ID : INT <<PK>>
+    ---
+    * DATE : DATE
+    * START_KM : DOUBLE
+    * END_KM : DOUBLE
+    * START_CITY : VARCHAR(100)
+    * END_CITY : VARCHAR(100)
+    INFO : VARCHAR(1000)
+}
+
+entity TRIP_CONDITION {
+    * TRIP_ID : INT <<FK>>
+    * CONDITION : VARCHAR(50)
+    ---
+    PRIMARY KEY (TRIP_ID, CONDITION)
+}
+
+TRIP ||--o{ TRIP_CONDITION : has
+
+@enduml
+----

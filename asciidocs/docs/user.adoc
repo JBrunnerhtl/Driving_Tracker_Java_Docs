@@ -1,0 +1,74 @@
+= Use-Case
+Jan Brunner
+1.0.0, {docdate}
+:icons: font
+:experimental:
+:sectnums:
+:source-highlighter: rouge
+:docinfo: shared
+ifndef::imagesdir[:imagesdir: images]
+:toc:
+ifdef::backend-html5[]
+// https://fontawesome.com/v4.7.0/icons/
+icon:file-text-o[link=https://github.com/JBrunnerhtl/Driving_Tracker_Java_Docs/blob/main/asciidocs/docs/{docname}.adoc] ‏ ‏ ‎
+icon:github-square[link=https://github.com/JBrunnerhtl/Driving_Tracker_Java_Docs] ‏ ‏ ‎
+endif::backend-html5[]
+
+== Use-Case
+
+[plantuml, useCase, svg]
+----
+@startuml DrivingTracker_UseCase
+!define ACTOR_STYLE
+left to right direction
+
+actor Driver
+
+package "Driving Tracker System" {
+    usecase UC1 as "Add Trip"
+    usecase UC2 as "Edit Trip"
+    usecase UC3 as "Delete Trip"
+    usecase UC4 as "View Trips"
+    usecase UC5 as "Search Trips"
+    usecase UC6 as "Sort Trips"
+    usecase UC7 as "View Statistics"
+    usecase UC8 as "View Progress"
+}
+
+Driver --> UC1 : Create new trip
+Driver --> UC2 : Modify trip details
+Driver --> UC3 : Remove trip
+Driver --> UC4 : List all trips
+Driver --> UC5 : Find trips by condition/city
+Driver --> UC6 : Sort trips (new/old)
+Driver --> UC7 : See statistics
+Driver --> UC8 : Check progress bar
+
+UC1 .> UC4 : <<include>>
+UC2 .> UC4 : <<include>>
+UC3 .> UC4 : <<include>>
+UC5 .> UC4 : <<include>>
+UC6 .> UC4 : <<include>>
+
+note right of UC1
+  Enter trip data:
+  - Date, km, cities, conditions, info
+end note
+
+note right of UC5
+  Filter by:
+  - Conditions (Day/Night, Weather)
+  - Cities
+end note
+
+note right of UC7
+  Calculate:
+  - Total km
+  - Average km per trip
+  - Trips this month
+  - Progress bar (L17 or Normal)
+  - Weekly activity chart
+end note
+
+@enduml
+----
