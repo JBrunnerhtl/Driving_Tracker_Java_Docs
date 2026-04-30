@@ -1,46 +1,83 @@
 @startuml
 left to right direction
+
 class Trip {
     {static}-int lastId
-    -int id
-    +LocalDateTime date
-    +Hashset<Condition> conditions
-    +double startKm
-    +double endKm
-    +string startCity
-    +string endCity
-    +string extraInfo
+    -int id <<get>>
+    -LocalDate date <<get/set>>
+    -HashSet<Condition> conditions <<get/set>>
+    -double startKm <<get/set>>
+    -double endKm <<get/set>>
+    -String startCity <<get/set>>
+    -String endCity <<get/set>>
+    -String info <<get/set>>
 
-    +Trip()
-    +Trip()
+    +Trip(date, conditions, startKm, endKm, startCity, endCity)
+    +Trip(date, conditions, startKm, endKm, startCity, endCity, info)
+    +Trip(other: Trip)
+    +addCondition()
+    +toString()
+    +toStringCSV()
+    +{static}parseFromCSV()
+    +equals()
+    +hashCode()
+    +compareTo()
 }
 
 class TripManager {
-    +ObservableList<Trip> trips
+    {static}-ObservableList<Trip> trips
+    -DatabaseConnection connection
+    -FilteredList<Trip> filteredList
+    -SortedList<Trip> sortedList
 
     +TripManager()
-    +getSumOfKilometers()
+    +loadTripsFromDB()
     +addTrip()
     +updateTrip()
     +deleteTrip()
-    +saveToDatabase()
-    -loadDatabase()
+    +getTripsSorted()
+    +applyFilter()
+    +setSortedListComparator()
+    +getCSV()
+    +getSumKilometers()
+    +getAverageKilometers()
+    +getTripsInMonth()
+    +getKilometerInDates()
+    +clearTrips()
 }
 
-class Database {
+class DatabaseConnection {
+    {static}-String URL
+
+    +DatabaseConnection()
+    +insertIntoDB()
+    +getAllTrips()
+    +updateTrip()
+    +deleteTrip()
+    -defaultTables()
 }
 
 enum Condition {
-    Tag
-    Nacht
-    Regen
-    Trocken
-    Nass
-    Nebel
-    Schnee
+    Day
+    Night
+    Rain
+    Dry
+    Wet
+    Fog
+    Snow
+    Ice
 }
 
-Trip "1" --- "*" Condition :hat
+
+
+enum Sort {
+    NEW
+    OLD
+}
+
+Trip "1" --- "*" Condition : hat
 TripManager "1" --- "*" Trip : verwaltet
-TripManager "1" --- "1" Database : schreibt in
+TripManager "1" --- "1" DatabaseConnection : schreibt in
+TripManager --- Sort : nutzt zum Sortieren
+
 @enduml
