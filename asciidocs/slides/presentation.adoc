@@ -1,6 +1,5 @@
 = Driving Tracker - Fahrtenverwaltung
 :author: Jan Brunner
-:email: j.brunner1@students.htl-leonding.ac.at
 :revnumber: 1.0
 :revdate: {docdate}
 :revremark: JavaFX Anwendung zur Fahrtenverwaltung für Fahrschüler
@@ -34,70 +33,60 @@ _Vereinfachte Verwaltung gefahrener Kilometer und Fahrtbedingungen_
 
 == Ausgangssituation
 
-Fahrschüler in Österreich müssen ihre Fahrten dokumentieren:
+Fahrschüler dokumentieren Fahrten für Führerschein:
 
-[%step]
-* Erforderlich für den Führerschein (L17 & Normalführerschein)
-* Durchschnittlich 2-3 Fahrten pro Woche
-* Circa 120 Einträge pro Jahr zu dokumentieren
-* Notwendig für das Absolvieren des Führerscheins
+* Erforderlich für L17 & Normalführerschein
+* 2-3 Fahrten pro Woche durchschnittlich
+* Circa 120 Einträge pro Jahr
 
 [transition]
 
-== Das Problem der Gegenwart
+== Das Problem
 
-Aktuelle Vorgehensweise
+Analoge Verwaltung heute:
 
-[%step]
-* Fahrtdaten werden manuell auf Zetteln notiert
-* Dokumentation in Excel-Dateien oder ungeordnet
-* Überblick über Kilometerstand geht schnell verloren
-* Verwaltung vieler verstreuter Zetteln ist unübersichtlich
-* Hoher zeitlicher Aufwand und Fehleranfälligkeit
+* Manuelle Notizen auf Zetteln
+* Unorganisierte Excel-Dateien
+* Überblick geht schnell verloren
+* Zeitaufwändig und fehleranfällig
 
 [transition]
 
 == Anforderungen an die Lösung
 
-Funktionale Anforderungen
+Funktional:
 
-[%step]
-* Neue Fahrten erfassen und speichern können
-* Gespeicherte Fahrten bearbeiten oder löschen
+* Neue Fahrten erfassen und speichern
+* Fahrten bearbeiten oder löschen
 * Gesamtkilometer und Durchschnittswerte anzeigen
-* Übersichtliche Darstellung aller Fahrten
+* Daten persistent speichern
 
 [transition]
 
-== Anforderungen an die Lösung (Fortsetzung)
+== Anforderungen (Fortsetzung)
 
-Nicht-funktionale Anforderungen
+Nicht-funktional:
 
-[%step]
-* Daten müssen sicher und dauerhaft gespeichert sein
-* Minimale Benutzeroberfläche mit zwei Tabs
-** Tab 1: Fahrteneintragung
-** Tab 2: Statistik und Übersicht
-* Einfache und intuitive Bedienung
+* Sichere Datenspeicherung
+* Zwei-Tab Interface: Erfassung & Statistik
+* Intuitive und einfache Bedienung
 
 [transition]
 
 == Lösungsansatz
 
-JavaFX-Anwendung für strukturierte Fahrtenverwaltung
+JavaFX-Anwendung für Fahrtenverwaltung
 
-[%step]
-* Zentrale Datenbank statt verstreute Zettel
-* Systematische und strukturierte Erfassung aller Fahrtdaten
-* Automatische Berechnung und Visualisierung von Statistiken
-* Sicheres Backup und Persistenz der Daten
-* Wartbar und zukünftig erweiterbar konzipiert
+* Zentrale Datenbank statt Zettel
+* Strukturierte Erfassung aller Fahrtdaten
+* Automatische Statistikberechnung
+* Sichere Datenpersistenz
 
 [transition]
 
 == Use-Cases im Überblick
 
-[plantuml, usecase, svg]
+[plantuml, usecase, svg, width=85%, height=480]
 ----
 @startuml DrivingTracker_UseCase
 left to right direction
@@ -108,11 +97,12 @@ package "Driving Tracker" {
     usecase UC1 as "Fahrt erfassen"
     usecase UC2 as "Fahrt bearbeiten"
     usecase UC3 as "Fahrt löschen"
-    usecase UC4 as "Alle Fahrten anzeigen"
-    usecase UC5 as "Nach Bedingungen filtern"
-    usecase UC6 as "Fahrten sortieren"
-    usecase UC7 as "Statistiken einsehen"
-    usecase UC8 as "Fortschritt anzeigen"
+    usecase UC4 as "Fahrten anzeigen"
+    usecase UC5 as "Filtern"
+    usecase UC6 as "Sortieren"
+    usecase UC7 as "Statistiken"
+    usecase UC8 as "Fahrten importieren"
+    usecase UC9 as "Fahrten exportieren"
 }
 
 Driver --> UC1
@@ -123,6 +113,7 @@ Driver --> UC5
 Driver --> UC6
 Driver --> UC7
 Driver --> UC8
+Driver --> UC9
 
 UC1 .> UC4 : <<include>>
 UC2 .> UC4 : <<include>>
@@ -134,7 +125,7 @@ UC3 .> UC4 : <<include>>
 
 == Systemarchitektur
 
-[plantuml, classdia, svg, width=100%, height=600]
+[plantuml, classdia, svg, width=90%, height=500]
 ----
 @startuml
 left to right direction
@@ -142,99 +133,65 @@ left to right direction
 class Trip {
     -int id
     -LocalDate date
+    -double startKm / endKm
+    -String startCity / endCity
     -HashSet<Condition> conditions
-    -double startKm
-    -double endKm
-    -String startCity
-    -String endCity
-    -String info
     
-    +Trip(...)
-    +addCondition()
-    +getKilometers()
-    +toStringCSV()
-    +{static}parseFromCSV()
-    +compareTo()
+    +Trip(...) +getKilometers()
 }
 
 class TripManager {
-    {static}-ObservableList<Trip> trips
+    -ObservableList<Trip> trips
     -DatabaseConnection connection
-    -FilteredList<Trip> filteredList
-    -SortedList<Trip> sortedList
     
     +loadTripsFromDB()
-    +addTrip()
-    +updateTrip()
-    +deleteTrip()
-    +applyFilter()
-    +setSortedListComparator()
+    +addTrip() +deleteTrip()
     +getSumKilometers()
-    +getAverageKilometers()
 }
 
 class DatabaseConnection {
-    {static}-String URL
-    
-    +insertIntoDB()
-    +getAllTrips()
-    +updateTrip()
-    +deleteTrip()
-    -defaultTables()
+    +insertIntoDB() +getAllTrips()
 }
 
 enum Condition {
-    Day
-    Night
-    Rain
-    Dry
-    Wet
-    Fog
-    Snow
-    Ice
+    Day / Night
+    Rain / Dry
+    Fog / Snow / Ice
 }
 
-Trip "1" --- "*" Condition : hat
-TripManager "1" --- "*" Trip : verwaltet
-TripManager "1" --- "1" DatabaseConnection : schreibt in
+Trip "1" --- "*" Condition
+TripManager "1" --- "*" Trip
+TripManager "1" --- "1" DatabaseConnection
 
 @enduml
 ----
-
-Grundlage: Model-View-Controller Pattern mit drei Hauptkomponenten
 
 [transition]
 
 == Datenbankmodell
 
-[plantuml, erd, svg]
+[plantuml, erd, svg, width=90%, height=400]
 ----
 @startuml DrivingTracker_ERD
 
 entity TRIP {
     * ID : INT <<PK>>
     ---
-    * DATE : DATE
-    * START_KM : DOUBLE
-    * END_KM : DOUBLE
-    * START_CITY : VARCHAR(100)
-    * END_CITY : VARCHAR(100)
-    INFO : VARCHAR(1000)
+    DATE, START_KM, END_KM
+    START_CITY, END_CITY, INFO
 }
 
 entity TRIP_CONDITION {
     * TRIP_ID : INT <<FK>>
-    * CONDITION_TYPE : VARCHAR(50)
-    ---
-    PRIMARY KEY (TRIP_ID, CONDITION_TYPE)
+    * CONDITION : VARCHAR(50)
 }
 
-TRIP ||--o{ TRIP_CONDITION : hat
+TRIP ||--o{ TRIP_CONDITION
 
 @enduml
 ----
 
-Relationale Datenbankstruktur für sichere und konsistente Verwaltung
+Relationale Struktur für sichere Datenpersistenz
 
 [transition]
 
@@ -242,45 +199,28 @@ Relationale Datenbankstruktur für sichere und konsistente Verwaltung
 
 [cols="1,2"]
 |===
-| Programmiersprache | Java 11 und höher
+| Programmiersprache | Java 21
 | GUI-Framework | JavaFX
 | Datenbanksystem | H2
 | Architektur-Pattern | Model-View-Controller (MVC)
 | Persistenz-Layer | JDBC
-| Collections | ObservableList, FilteredList, SortedList
 |===
 
 [transition]
 
-== Benutzeroberfläche - Konzept
+== Benutzeroberfläche
 
-Tab-basiertes Interface mit zwei Hauptbereichen:
+Zwei-Tab Interface:
 
-[%step]
-* **Tab 1: Erfassung und Verwaltung**
-  - Neue Fahrten hinzufügen
-  - Bestehende Fahrten bearbeiten oder löschen
-  - Übersichtliche Eingabefelder für alle Fahrtdaten
+[cols="1,1"]
+|===
+| Tab 1: Erfassung | Fahrten hinzufügen, bearbeiten, löschen
+| Tab 2: Statistik | Kilometer, Durchschnitt, Fortschritt
+|===
 
-[%step]
-* **Tab 2: Statistik und Analyse**
-  - Gesamtkilometer anzeigen
-  - Durchschnittswerte pro Fahrt berechnen
-  - Fahrten pro Monat auswerten
-  - Fortschrittsbalken für Lernfortschritt
+Intuitive Navigation und klare Datenübersicht
 
-[transition]
 
-== Datenfluss und Reaktivität
-
-Live-Datenmanagement durch Observable Collections:
-
-[%step]
-* ObservableList als zentrale Fahrtenverwaltung
-* Automatische Benachrichtigung der UI bei Datenänderungen
-* FilteredList für dynamische Filterung nach Bedingungen
-* SortedList für flexible Sortierung nach Datumsangaben
-* Konsistente Datenbanksynchronisation bei allen Operationen
 
 [transition]
 
@@ -291,34 +231,28 @@ Live-Datenmanagement durch Observable Collections:
 | Benutzer pro Installation | 1
 | Einträge pro Jahr | Circa 120 Fahrten
 | Fahrten pro Woche | 2-3 durchschnittlich
-| Variabilität | Saisonal abhängig
 |===
 
-Ausgelegt für persönliche Nutzung mit ausreichender Erweiterbarkeit
 
 [transition]
 
 == Ziele der Anwendung
 
-[%step]
-* Vereinfachung der Verwaltung gefahrener Kilometer
-* Anregung und Motivationssteigerung für Fahrschüler
-* Digitale Alternative zu analogen Dokumentationsmethoden
-* Transparente Verfolgung des Lernfortschritts
-* Reduktion administrativer Belastung
+* Vereinfachung der Fahrtenverwaltung
+* Motivationssteigerung für Fahrschüler
+* Digitale Alternative zu analogen Methoden
+* Transparente Verfolgung des Fortschritts
 
 [transition]
 
 == Zusammenfassung
 
-Die Driving Tracker Anwendung:
+Die Lösung:
 
-[%step]
-* Bietet strukturierte und sichere Fahrtenverwaltung
-* Eliminiert das Problem der Zettelwirtschaft
-* Ermöglicht schnelle Übersicht und aussagekräftige Statistiken
-* Reduziert Verwaltungsaufwand durch Automatisierung
-* Ist wartbar, erweiterbar und benutzerfreundlich
+* Strukturierte und sichere Fahrtenverwaltung
+* Eliminiert die Zettelwirtschaft
+* Automatische Statistikberechnung
+* Wartbar und benutzerfreundlich
 
 [transition]
 
