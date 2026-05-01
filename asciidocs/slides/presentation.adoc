@@ -126,59 +126,15 @@ UC3 .> UC4 : <<include>>
 left to right direction
 
 class Trip {
-    {static}-int lastId
-    -int id <<get>>
-    -LocalDate date <<get/set>>
-    -HashSet<Condition> conditions <<get/set>>
-    -double startKm <<get/set>>
-    -double endKm <<get/set>>
-    -String startCity <<get/set>>
-    -String endCity <<get/set>>
-    -String info <<get/set>>
 
-    +Trip(date, conditions, startKm, endKm, startCity, endCity)
-    +Trip(date, conditions, startKm, endKm, startCity, endCity, info)
-    +Trip(other: Trip)
-    +addCondition()
-    +toString()
-    +toStringCSV()
-    +{static}parseFromCSV()
-    +equals()
-    +hashCode()
-    +compareTo()
 }
 
 class TripManager {
-    {static}-ObservableList<Trip> trips
-    -DatabaseConnection connection
-    -FilteredList<Trip> filteredList
-    -SortedList<Trip> sortedList
 
-    +TripManager()
-    +loadTripsFromDB()
-    +addTrip()
-    +updateTrip()
-    +deleteTrip()
-    +getTripsSorted()
-    +applyFilter()
-    +setSortedListComparator()
-    +getCSV()
-    +getSumKilometers()
-    +getAverageKilometers()
-    +getTripsInMonth()
-    +getKilometerInDates()
-    +clearTrips()
 }
 
 class DatabaseConnection {
-    {static}-String URL
 
-    +DatabaseConnection()
-    +insertIntoDB()
-    +getAllTrips()
-    +updateTrip()
-    +deleteTrip()
-    -defaultTables()
 }
 
 enum Condition {
