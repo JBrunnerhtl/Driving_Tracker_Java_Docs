@@ -126,39 +126,86 @@ UC3 .> UC4 : <<include>>
 left to right direction
 
 class Trip {
-    -int id
-    -LocalDate date
-    -double startKm / endKm
-    -String startCity / endCity
-    -HashSet<Condition> conditions
-    
-    +getKilometers()
+    {static}-int lastId
+    -int id <<get>>
+    -LocalDate date <<get/set>>
+    -HashSet<Condition> conditions <<get/set>>
+    -double startKm <<get/set>>
+    -double endKm <<get/set>>
+    -String startCity <<get/set>>
+    -String endCity <<get/set>>
+    -String info <<get/set>>
+
+    +Trip(date, conditions, startKm, endKm, startCity, endCity)
+    +Trip(date, conditions, startKm, endKm, startCity, endCity, info)
+    +Trip(other: Trip)
+    +addCondition()
+    +toString()
+    +toStringCSV()
+    +{static}parseFromCSV()
+    +equals()
+    +hashCode()
+    +compareTo()
 }
 
 class TripManager {
-    -ObservableList<Trip> trips
+    {static}-ObservableList<Trip> trips
     -DatabaseConnection connection
-    
-    +addTrip() +deleteTrip()
+    -FilteredList<Trip> filteredList
+    -SortedList<Trip> sortedList
+
+    +TripManager()
+    +loadTripsFromDB()
+    +addTrip()
+    +updateTrip()
+    +deleteTrip()
+    +getTripsSorted()
+    +applyFilter()
+    +setSortedListComparator()
+    +getCSV()
     +getSumKilometers()
+    +getAverageKilometers()
+    +getTripsInMonth()
+    +getKilometerInDates()
+    +clearTrips()
 }
 
 class DatabaseConnection {
+    {static}-String URL
+
+    +DatabaseConnection()
     +insertIntoDB()
     +getAllTrips()
+    +updateTrip()
+    +deleteTrip()
+    -defaultTables()
 }
 
 enum Condition {
-    Day / Night
-    Rain / Dry / Wet
-    Fog / Snow / Ice
+    Day
+    Night
+    Rain
+    Dry
+    Wet
+    Fog
+    Snow
+    Ice
 }
 
-Trip "1" --- "*" Condition
-TripManager "1" --- "*" Trip
-TripManager "1" --- "1" DatabaseConnection
+
+
+enum Sort {
+    NEW
+    OLD
+}
+
+Trip "1" --- "*" Condition : hat
+TripManager "1" --- "*" Trip : verwaltet
+TripManager "1" --- "1" DatabaseConnection : schreibt in
+TripManager --- Sort : nutzt zum Sortieren
 
 @enduml
+
 ----
 
 
@@ -220,15 +267,6 @@ Intuitive Navigation und klare Datenübersicht
 * Motivationssteigerung für Fahrschüler
 * Digitale Alternative zu analogen Methoden
 * Transparente Verfolgung des Fortschritts
-
-=== Die Lösung
-
-Die Driving Tracker Anwendung:
-
-* Strukturierte und sichere Fahrtenverwaltung
-* Eliminiert die Zettelwirtschaft
-* Automatische Statistikberechnung
-* Wartbar und benutzerfreundlich
 
 == Vielen Dank
 
