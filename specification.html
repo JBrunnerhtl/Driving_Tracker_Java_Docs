@@ -506,18 +506,44 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>Der Benutzer soll eine neue Fahrt hinzufügen können.</p>
+<p>Der Benutzer soll neue Fahrten erfassen und speichern können (mit Datum, Kilometer, Startort, Zielort, Fahrtbedingungen)</p>
 </li>
 <li>
-<p>Der Benutzer soll eine Fahrt, die falsche Daten beinhaltet, entweder löschen oder ändern können.</p>
+<p>Der Benutzer soll Fahrten bearbeiten können, um fehlerhafte Daten zu korrigieren</p>
 </li>
 <li>
-<p>Der Benutzer soll eine Übersicht haben, wo er wie viele Kilometer gefahren ist.</p>
+<p>Der Benutzer soll Fahrten löschen können</p>
 </li>
 <li>
-<p>Der Benutzer soll eine Aufsummierung der Kilometer haben.</p>
+<p>Der Benutzer soll eine Übersicht aller erfassten Fahrten erhalten</p>
+</li>
+<li>
+<p>Der Benutzer soll Fahrten nach Fahrtbedingungen (z.B. Tag/Nacht, Wetter) und Orten filtern können</p>
+</li>
+<li>
+<p>Der Benutzer soll Fahrten sortieren können (nach neuste/älteste)</p>
+</li>
+<li>
+<p>Der Benutzer soll Statistiken anzeigen können (Gesamtkilometer, Durchschnittswerte, monatliche Statistik, Wochenübersicht)</p>
+</li>
+<li>
+<p>Der Benutzer soll einen Fortschrittsbalken für den Führerschein sehen können (L17 oder Normalführerschein)</p>
+</li>
+<li>
+<p>Der Benutzer soll Fahrten importieren können (CSV/Backups)</p>
+</li>
+<li>
+<p>Der Benutzer soll Fahrten exportieren können (CSV-Format für Backups)</p>
 </li>
 </ul>
+</div>
+<div class="sect3">
+<h4 id="_use_cases"><a class="anchor" href="#_use_cases"></a>4.1.1. Use-Cases</h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/usecase.svg" alt="usecase" width="805" height="790">
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -525,11 +551,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>Die Daten sollen sicher und persistent verwaltet werden</p>
+<p>Die Daten sollen sicher und persistent verwaltet werden (H2-Datenbank mit JDBC)</p>
 </li>
 <li>
-<p>Eine minimale UI mit zwei Tabs(Eintragung und Statistik) soll zur Verfügung stehen.
--</p>
+<p>Eine intuitive Benutzeroberfläche mit zwei Tabs (Erfassung und Statistik) soll zur Verfügung stehen</p>
+</li>
+<li>
+<p>Das System soll eine sichere Datenspeicherung mit Datenbank-Persistenz bieten</p>
+</li>
+<li>
+<p>Die Bedienung soll intuitiv und einfach sein</p>
 </li>
 </ul>
 </div>
@@ -542,10 +573,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>Verwaltung von gefahrenen Kilometern vereinfachen</p>
+<p>Vereinfachung der Fahrtenverwaltung für Fahrschüler</p>
 </li>
 <li>
-<p>Fahrschüler anregen den Führerschein zu machen</p>
+<p>Motivationssteigerung durch transparente Fortschrittsverfolgung</p>
+</li>
+<li>
+<p>Digitale Alternative zu analogen Methoden (Zettel, Excel)</p>
+</li>
+<li>
+<p>Transparente Verfolgung des Fortschritts zum Führerschein</p>
 </li>
 </ul>
 </div>
@@ -575,7 +612,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>JavaFX</p>
+<p>JavaFX (Version 21)</p>
 </li>
 <li>
 <p>Datenbank: H2</p>
@@ -591,7 +628,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2026-05-01 16:25:27 UTC
+Last updated 2026-05-01 16:35:43 UTC
 </div>
 </div>
 </body>
